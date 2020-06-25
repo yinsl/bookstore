@@ -1,0 +1,5 @@
+mvn install:install-file -DgroupId=com.jit -DartifactId=jempbox -Dversion=1.0.0 -Dpackaging=jar -Dfile=d:/jar/jempbox-1.6.0.jar
+mvn install:install-file -DgroupId=com.jit -DartifactId=pkitool -Dversion=1.0.0 -Dpackaging=jar -Dfile=d:/jar/jit-pkitool-2.3.0.25-beta2.jar
+mvn install:install-file -DgroupId=com.jit -DartifactId=jit-vstk-custom-jdk16 -Dversion=1.0.0 -Dpackaging=jar -Dfile=d:/jar/jit-vstk-custom-jdk16-2.0.3.jar
+mvn install:install-file -DgroupId=com.jit -DartifactId=jit-vstk-jdk15 -Dversion=1.0.0 -Dpackaging=jar -Dfile=d:/jar/jit-vstk-jdk15-2.0.65-20181012.005341-20.jar
+mvn install:install-file -DgroupId=com.jit -DartifactId=jit-vstk-jdk15-new -Dversion=1.0.0 -Dpackaging=jar -Dfile=d:/jar/jit-vstk-jdk15-new-2.0.308.2-impl.jar
