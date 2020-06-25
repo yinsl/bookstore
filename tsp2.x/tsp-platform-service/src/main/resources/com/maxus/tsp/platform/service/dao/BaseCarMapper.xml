@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.maxus.tsp.platform.service.dao.car.BaseCarDao">
+	<resultMap type="com.maxus.tsp.platform.service.model.car.BaseCar"
+		id="BaseResultMap">
+		<id column="ID" property="id" />
+		<!--<result column="UUID" property="UUID" /> -->
+		<result column="SN" property="sn" />
+		<result column="CarName" property="carName" />
+		<result column="State" property="state" />
+		<result column="ID_CarType" property="idCarType" />
+		<result column="ID_CarColor" property="idCarColor" />
+		<result column="ID_OilNO" property="idOilNo" />
+		<result column="ID_OilType" property="idOilType" />
+		<result column="CreatDate" property="createDate" />
+		<result column="CarNO" property="carNo" />
+		<result column="VIN" property="vin" />
+		<result column="EngineNo" property="engineNo" />
+		<!--<result column="ICCID" property="ICCID" /> -->
+	</resultMap>
+	<resultMap
+		type="com.maxus.tsp.platform.service.model.vo.OwnerBusNichNamesVO" id="BaseResultVoMap">
+		<result column="CarName" property="carName" />
+		<result column="SN" property="sn" />
+		<result column="CarType" property="carType" />
+		<result column="VIN" property="vin" />
+	</resultMap>
+
+	<select id="selectBaseCarByVIN" resultMap="BaseResultMap">
+		SELECT * FROM base_car
+		WHERE VIN= #{vin} and State = 1
+	</select>
+
+	<select id="checkCamera" resultType="java.lang.Integer">
+		SELECT count(*)
+		FROM base_car_camera where base_carId =
+		(select id from base_car where vin=#{vin} and State =1 limit 1 )
+		and cameraNo
+		= #{cameraNo}
+	</select>
+
+	<!-- 获取所有tbox对应vin号 -->
+	<select id="getAllVinForTbox" resultMap="BaseResultVoMap">
+		SELECT SN, VIN FROM
+		base_car
+		where State=1 and SN is not null;
+	</select>
+</mapper>

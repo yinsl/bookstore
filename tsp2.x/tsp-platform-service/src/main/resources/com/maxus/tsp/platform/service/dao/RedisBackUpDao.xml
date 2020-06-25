@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.maxus.tsp.platform.service.dao.car.RedisBackUpDao">
+
+	<resultMap type="com.maxus.tsp.platform.service.model.car.RedisTboxInfo"
+		id="RedisTboxInfoMap">
+		<id column="ID" property="id" />
+		<result column="tboxSn" property="tboxSn" />
+		<result column="value" property="value" />
+	</resultMap>
+	
+	<!-- rds_car_remote_ctrl_resp -->
+    <!--仅查询sn是否存在-->
+    <select id="checkTboxInfoIndb_rds_car_remote_ctrl_resp" resultType="java.lang.Integer">
+        SELECT
+        COUNT(0)
+        FROM rds_car_remote_ctrl_resp
+        WHERE tboxSn=#{tboxSn}
+    </select>
+
+    <!--查询并获取记录-->
+    <select id="getRecordIndb_rds_car_remote_ctrl_resp" resultMap="RedisTboxInfoMap">
+        SELECT
+        id,tboxSn,value
+        FROM rds_car_remote_ctrl_resp
+        WHERE tboxSn=#{tboxSn}
+    </select>
+    
+    <!--删除记录-->
+    <delete id="deleteTboxInfodb_rds_car_remote_ctrl_resp">
+        delete from rds_car_remote_ctrl_resp where tboxSn=#{tboxSn}
+    </delete>
+    
+    <!--更新对应表数据-->
+    <update id="updateTboxInfodb_rds_car_remote_ctrl_resp">
+    	update rds_car_remote_ctrl_resp set value=#{value}
+    	where tboxSn = #{tboxSn}
+    </update>
+    
+    <!--插入新数据-->
+    <insert id="insertTboxInfodb_rds_car_remote_ctrl_resp">
+		insert
+		into
+		rds_car_remote_ctrl_resp(
+		tboxSn,
+		value)
+
+		values(
+		#{tboxSn},
+		#{value})
+	</insert>
+	
+	<!-- 获取全部数据 -->
+	<select id="getAllRecordsIndb_rds_car_remote_ctrl_resp" resultMap="RedisTboxInfoMap">
+		SELECT
+		id,tboxSn,value
+		FROM rds_car_remote_ctrl_resp
+	</select>
+	
+	<!-- 删除全部数据 -->
+	<select id="deleteAllRecordsIndb_rds_car_remote_ctrl_resp">
+		DELETE FROM rds_car_remote_ctrl_resp
+	</select>
+	
+	<!-- 插入数据 -->
+	<insert id="insertAllRecordsIndb_rds_car_remote_ctrl_resp" parameterType="java.util.Map">
+		INSERT INTO rds_car_remote_ctrl_resp (tboxSn,value)
+		VALUES
+		<foreach collection="currentrecords.entrySet()" item ="value" index ="key" separator=",">
+			(#{key},#{value})
+		</foreach>
+	</insert>
+
+
+
+
+
+
+	<!-- rds_online_tbox -->
+    <!--仅查询sn是否存在-->
+    <select id="checkTboxInfoIndb_rds_online_tbox" resultType="java.lang.Integer">
+        SELECT
+        COUNT(0)
+        FROM rds_online_tbox
+        WHERE tboxSn=#{tboxSn}
+    </select>
+
+    <!--查询并获取记录-->
+    <select id="getRecordIndb_rds_online_tbox" resultMap="RedisTboxInfoMap">
+        SELECT
+        id,tboxSn,value
+        FROM rds_online_tbox
+        WHERE tboxSn=#{tboxSn}
+    </select>
+    
+    <!--删除记录-->
+    <delete id="deleteTboxInfodb_rds_online_tbox">
+        delete from rds_online_tbox where tboxSn=#{tboxSn}
+    </delete>
+    
+    <!--更新对应表数据-->
+    <update id="updateTboxInfodb_rds_online_tbox">
+    	update rds_online_tbox set value=#{value}
+    	where tboxSn = #{tboxSn}
+    </update>
+    
+    <!--插入新数据-->
+    <insert id="insertTboxInfodb_rds_online_tbox">
+		insert
+		into
+		rds_online_tbox(
+		tboxSn,
+		value)
+
+		values(
+		#{tboxSn},
+		#{value})
+	</insert>
+	
+	<!-- 获取全部数据 -->
+	<select id="getAllRecordsIndb_rds_online_tbox" resultMap="RedisTboxInfoMap">
+		SELECT
+		id,tboxSn,value
+		FROM rds_online_tbox
+	</select>
+	
+	<!-- 删除全部数据 -->
+	<select id="deleteAllRecordsIndb_rds_online_tbox">
+		DELETE FROM rds_online_tbox
+	</select>
+
+	<!-- 插入数据 -->
+	<insert id="insertAllRecordsIndb_rds_online_tbox" parameterType="java.util.Map">
+		INSERT INTO rds_online_tbox (tboxSn,value)
+		VALUES
+		<foreach collection="currentrecords.entrySet()" item ="value" index ="key" separator=",">
+			(#{key},#{value})
+		</foreach>
+	</insert>
+
+
+
+
+
+
+
+	<!-- rds_tbox_channel -->
+    <!--查询并获取记录-->
+    <select id="getRecordIndb_rds_tbox_channel" resultMap="RedisTboxInfoMap">
+        SELECT
+        id,tboxSn,value
+        FROM rds_tbox_channel
+        WHERE tboxSn=#{tboxSn}
+    </select>
+    <!--仅查询sn是否存在-->
+    <select id="checkTboxInfoIndb_rds_tbox_channel" resultType="java.lang.Integer">
+        SELECT
+        COUNT(0)
+        FROM rds_tbox_channel
+        WHERE tboxSn=#{tboxSn}
+    </select>
+    
+    <!--删除记录-->
+    <delete id="deleteTboxInfodb_rds_tbox_channel">
+        delete from rds_tbox_channel where tboxSn=#{tboxSn}
+    </delete>
+    
+    <!--更新对应表数据-->
+    <update id="updateTboxInfodb_rds_tbox_channel">
+    	update rds_tbox_channel set value=#{value}
+    	where tboxSn = #{tboxSn}
+    </update>
+    
+    <!--插入新数据-->
+    <insert id="insertTboxInfodb_rds_tbox_channel">
+		insert
+		into
+		rds_tbox_channel(
+		tboxSn,
+		value)
+
+		values(
+		#{tboxSn},
+		#{value})
+	</insert>
+
+	<!-- 获取全部数据 -->
+	<select id="getAllRecordsIndb_rds_tbox_channel" resultMap="RedisTboxInfoMap">
+		SELECT
+		id,tboxSn,value
+		FROM rds_tbox_channel
+	</select>
+	
+	<!-- 删除全部数据 -->
+	<select id="deleteAllRecordsIndb_rds_tbox_channel">
+		DELETE FROM rds_tbox_channel
+	</select>
+	
+	<!-- 插入数据 -->
+	<insert id="insertAllRecordsIndb_rds_tbox_channel" parameterType="java.util.Map">
+		INSERT INTO rds_tbox_channel (tboxSn,value)
+		VALUES
+		<foreach collection="currentrecords.entrySet()" item ="value" index ="key" separator=",">
+			(#{key},#{value})
+		</foreach>
+	</insert>
+
+
+
+
+
+
+
+	<!-- rds_tbox_logout_time -->
+    <!--仅查询sn是否存在-->
+    <select id="checkTboxInfoIndb_rds_tbox_logout_time" resultType="java.lang.Integer">
+        SELECT
+        COUNT(0)
+        FROM rds_tbox_logout_time
+        WHERE tboxSn=#{tboxSn}
+    </select>
+    
+    <!--删除记录
+    <delete id="deleteTboxInfodb_rds_tbox_logout_time">
+        delete from rds_tbox_logout_time where tboxSn=#{tboxSn}
+    </delete>
+    -->
+    
+    <!--更新对应表数据-->
+    <update id="updateTboxInfodb_rds_tbox_logout_time">
+    	update rds_tbox_logout_time set value=#{value}
+    	where tboxSn = #{tboxSn}
+    </update>
+    
+    <!--插入新数据-->
+    <insert id="insertTboxInfodb_rds_tbox_logout_time">
+		insert
+		into
+		rds_tbox_logout_time(
+		tboxSn,
+		value)
+
+		values(
+		#{tboxSn},
+		#{value})
+	</insert>
+    
+    <!--查询并获取记录-->
+    <select id="getRecordIndb_rds_tbox_logout_time" resultMap="RedisTboxInfoMap">
+        SELECT
+        id,tboxSn,value
+        FROM rds_tbox_logout_time
+        WHERE tboxSn=#{tboxSn}
+    </select>
+
+	<!-- 获取全部数据 -->
+	<select id="getAllRecordsIndb_rds_tbox_logout_time" resultMap="RedisTboxInfoMap">
+		SELECT
+		id,tboxSn,value
+		FROM rds_tbox_logout_time
+	</select>
+	
+	<!-- 删除全部数据 -->
+	<select id="deleteAllRecordsIndb_rds_tbox_logout_time">
+		DELETE FROM rds_tbox_logout_time
+	</select>
+	
+	<!-- 插入数据 -->
+	<insert id="insertAllRecordsIndb_rds_tbox_logout_time" parameterType="java.util.Map">
+		INSERT INTO rds_tbox_logout_time (tboxSn,value)
+		VALUES
+		<foreach collection="currentrecords.entrySet()" item ="value" index ="key" separator=",">
+			(#{key},#{value})
+		</foreach>
+	</insert>
+
+
+</mapper>

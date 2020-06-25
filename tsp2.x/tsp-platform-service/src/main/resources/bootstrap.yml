@@ -1,0 +1,26 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: tsp-platform-service
+  cloud:
+#    inetutils:
+#      preferredNetworks: 10.0
+    config:
+      discovery:
+        enabled: true
+        service-id: TSP-CONFIG-SERVER
+      name: tsp-platform-service
+      label: master
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+image:
+  rootDirectory: Image/
+  imageDirectory: HeadPic/
+  thumbnailWidth: 100
+  thumbnailHeight: 100

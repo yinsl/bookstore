@@ -1,0 +1,72 @@
+server:
+  port: 7003
+spring:
+  application:
+    name: tsp-gateway-service-mqtt
+  cloud:
+#    inetutils:
+#      preferredNetworks: 192.168
+    config:
+      discovery:
+        enabled: true
+        service-id: TSP-CONFIG-SERVER
+      name: tsp-gateway-service
+      label: master
+      profile: mqtt
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+#      defaultZone: http://10.130.151.197:8762/eureka/
+      
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info, health, refresh, loggers
+  
+tsp-gateway-service:
+  ribbon:
+    ConnectTimeout: 100000
+    ReadTimeout: 100000
+    OkToRetryOnAllOperations: false
+    MaxAutoRetriesNextServer: 0
+    MaxAutoRetries: 0
+
+tsp-platform-service:
+  ribbon:
+    ConnectTimeout: 90000
+    ReadTimeout: 90000
+    OkToRetryOnAllOperations: false
+    MaxAutoRetriesNextServer: 0
+    MaxAutoRetries: 0
+
+#feign:
+#  client:
+#    config:
+#      default:
+#        connectTimeout: 15000
+#        readTimeout: 15000
+rpcServer:
+  host: 0.0.0.0
+  ioThreadNum: 100
+  backlog: 1024
+  port: 9090
+  otaVersion: 0.12,0.13,0.14,0.15,0.16,0.17,0.18,0.19,0.20,0.21,0.22,0.23,0.24,0.25,0.26,0.27,0.28,0.29,0.30,0.31,0.32,0.33,0.34,0.35,200.18
+
+#liantong:
+#  sms:
+#    namespaceurl: http://api.jasperwireless.com/ws/schema
+#    prefix: jws
+#    soapaction: http://api.jasperwireless.com/ws/service/sms/SendSMS
+#    smsurl: https://api.10646.cn/ws/service/sms
+#    licensekey: e103c938-271f-4186-8d4b-1a9216d1d9dd
+#    username: liangjie
+#    password: liujf760917
+
+logging:
+  level:
+    ROOT: WARN

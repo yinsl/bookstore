@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.maxus.tsp.platform.service.dao.PlatformDao" >
+	
+	<resultMap type="com.maxus.tsp.platform.service.model.Platform" id="BaseResultMap">
+		<id column="id" property="id"/>
+		<result column="ip" property="ip"/>
+		<result column="port" property="port"/>
+		<result column="username" property="username"/>
+		<result column="password" property="password"/>
+		<result column="type_id" property="typeId"/>
+		<result column="status" property="status"/>
+		<result column="last_login_time" property="lastLoginTime"/>
+		<result column="last_logout_time" property="lastLogoutTime"/>
+		<result column="connect_ip" property="connectIp"/>
+		<result column="connect_port" property="connectPort"/>
+		<result column="remark" property="remark"/>
+		<result column="create_time" property="createTime"/>
+		<result column="created_by" property="createdBy"/>
+		<result column="update_time" property="updateTime"/>
+		<result column="updated_by" property="updatedBy"/>
+	</resultMap>
+	
+	<select id="getPlatform"  resultMap="BaseResultMap">
+	select ip,
+	       port,
+	       username,
+	       password,
+	       type_id,
+	       status,
+	       last_login_time,
+	       last_logout_time,
+	       connect_ip,
+	       connect_port,
+	       remark,
+	       create_time,
+	       created_by,
+	       update_time,
+	       updated_by from platform where id=#{id}
+	</select>
+	<select id="platformAll"  resultMap="BaseResultMap">
+	select ip,
+	       port,
+	       username,
+	       password,
+	       type_id,
+	       status,
+	       last_login_time,
+	       last_logout_time,
+	       connect_ip,
+	       connect_port,
+	       remark,
+	       create_time,
+	       created_by,
+	       update_time,
+	       updated_by from platform
+	</select>
+	
+	<insert id="insertplatform" parameterType="com.maxus.tsp.platform.service.model.Platform">
+	 insert into platform(
+	 status,
+	 last_login_time,
+	 last_logout_time)
+	 VALUES
+	(
+	#{status},
+	#{lastLoginTime},
+	#{lastlogoutTime}
+	)
+	 
+	</insert>
+	<update id="updateplatform" parameterType="com.maxus.tsp.platform.service.model.Platform">
+	update platform
+	set status=#{status},
+	last_login_time=#{lastLoginTime},
+	last_logout_time=#{lastLogoutTime}
+	where id=#{id}
+	</update>
+</mapper>

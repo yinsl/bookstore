@@ -1,0 +1,44 @@
+server:
+  port: 8186
+spring:
+  application:
+    name: tsp-stress-test
+  cloud:
+#    inetutils:
+#      preferredNetworks: 10.64
+    config:
+      discovery:
+        enabled: true
+        service-id: TSP-CONFIG-SERVER
+      name: tsp-stress-test
+      label: master
+      profile: mqtt
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+  client:
+    serviceUrl:
+      defaultZone: http://10.130.151.197:8762/eureka/
+
+tsp-platform-service:
+  ribbon:
+    OkToRetryOnAllOperations: false
+    MaxAutoRetriesNextServer: 1
+    MaxAutoRetries: 0
+
+hystrix:
+  tsp-platform-service:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000
+          semaphore:
+            maxConcurrentRequests: 1000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info, health, refresh, loggers
